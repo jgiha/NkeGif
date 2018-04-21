@@ -1,0 +1,358 @@
+﻿
+@{
+    ViewBag.Title = "Chrom";
+}
+
+
+
+@section scripts{
+    <script src='~/Scripts/gifshot.js'></script>
+    <script src="~/Scripts/demo.js"></script>
+    <script>
+
+        //var chromy = (function () {
+        
+        //        var isStreaming = false,
+        //            v = document.getElementById('v'),
+        //            c = document.getElementById('c'),
+        //            btn = document.getElementById('btn'),
+        //            con = c.getContext('2d'),
+        //            slider = document.getElementById('slider'),
+        //            w = 600,
+        //            h = 420,
+        //            threshold = 1,
+        //            snapshot = null,
+        //            applyChromaKey = true;
+
+        //        // Cross browser
+        //        navigator.getUserMedia = (navigator.getUserMedia ||
+        //      navigator.webkitGetUserMedia ||
+        //      navigator.mozGetUserMedia ||
+        //      navigator.msGetUserMedia);
+        //        if (navigator.getUserMedia) {
+        //            // Request access to video only
+        //            navigator.getUserMedia(
+        //                {
+        //                    video: true,
+        //                    audio: false
+        //                },
+        //                function (stream) {
+        //                    // Cross browser checks
+        //                    var url = window.URL || window.webkitURL;
+        //                    v.src = url ? url.createObjectURL(stream) : stream;
+        //                    // Set the video to play
+        //                    v.play();
+        //                },
+        //                function (error) {
+        //                    alert('Something went wrong. (error code ' + error.code + ')');
+        //                    return;
+        //                }
+        //            );
+        //        }
+        //        else {
+        //            alert('Sorry, the browser you are using doesn\'t support getUserMedia');
+        //            return;
+        //        }
+
+        //        // Wait until the video stream can play
+        //        v.addEventListener('canplay', function (e) {
+        //            if (!isStreaming) {
+        //                // videoWidth isn't always set correctly in all browsers
+        //                if (v.videoWidth > 0) h = v.videoHeight / (v.videoWidth / w);
+        //                c.setAttribute('width', w);
+        //                c.setAttribute('height', h);
+        //                // Reverse the canvas image
+        //                con.translate(w, 0);
+        //                con.scale(-1, 1);
+        //                isStreaming = false;
+        //            }
+        //        }, false);
+
+        //        // Wait for the video to start to play
+        //        v.addEventListener('play', function () {
+        //            // Every 33 milliseconds copy the video image to the canvas
+
+        //            setInterval(function () {
+        //                if (v.paused || v.ended) return;
+        //                con.fillRect(0, 0, w, h);
+        //                con.drawImage(v, 0, 0, w, h);
+        //                if (applyChromaKey) chromaKey();
+        //            }, 16);
+
+        //        }, false);
+
+        //        var chromaKey = function () {
+        //            var currentImage = con.getImageData(0, 0, w, h);
+        //            var o = snapshot.data;
+
+        //            var data = currentImage.data;
+
+        //            for (var i = 0; i < data.length; i += 4) {
+        //                var r = data[i];
+        //                var g = data[i + 1];
+        //                var b = data[i + 2];
+        //                var a = 1;
+
+        //                var _tMin = (1 - parseFloat(threshold));
+        //                var _tMax = (1 + parseFloat(threshold));
+
+        //                a = (r * _tMin > o[i] || r * _tMax < o[i]) ? 255 : 0;
+        //                a = (g * _tMin > o[i + 1] || g * _tMax < o[i + 1]) ? 255 : 0;
+        //                a = (b * _tMin > o[i + 2] || b * _tMax < o[i + 2]) ? 255 : 0;
+
+        //                data[i + 3] = a;
+
+        //            }
+        //            con.putImageData(currentImage, 0, 0);
+        //        }
+
+        //        btn.addEventListener('click', function () {
+        //            snapshot = con.getImageData(0, 0, w, h);
+        //            applyChromaKey = applyChromaKey;
+        //            if (applyChromaKey) console.log('snapshot!');
+
+        //        }, false);
+
+        //        slider.addEventListener('input', function () {
+        //            threshold = this.value;
+        //        }, false);
+
+        //    })
+        //();
+
+        //gifshot.createGIF({
+        //    gifWidth: 400,
+        //    gifHeight: 400,
+        //    filter: '',
+        //    // video: chromy,
+        //    var image = obj.image,
+        //    interval: 0.1,
+        //    numFrames: 10,
+        //    frameDuration: 1,
+        //    keepCameraOn: false,
+        //    text: 'Cool Words Go Here',
+        //    fontWeight: 'normal',
+        //    fontSize: '16px',
+        //    fontFamily: 'sans-serif',
+        //    fontColor: '#ffffff',
+        //    textAlign: 'center',
+        //    textBaseline: 'bottom',
+        //    sampleInterval: 10,
+        //    numWorkers: 2
+        //}, function (obj) {
+        //    if (!obj.error) {
+        //        var image = obj.image, animatedImage = document.createElement('img');
+        //        animatedImage.src = image;
+        //        document.body.appendChild(animatedImage);
+        //    }
+        //});
+
+        //Capture
+        gifshot.createGIF(function (obj) {
+            if (!obj.error) {
+                var image = obj.image,
+                animatedImage = document.createElement('img');
+                animatedImage.src = image;
+                document.body.appendChild(animatedImage);
+            }
+        });
+        ///
+        
+    
+
+
+        //function createButton(id, text, onClick) {
+        //    const button = document.createElement("input");
+        //    button.id = id;
+        //    button.type = "button";
+        //    button.value = text;
+        //    button.onclick = onClick;
+        //    document.body.appendChild(button);
+        //    console.log("Button " + id + " created");
+        //}
+
+        //function createVideoTag(id, width, height, video_source) {
+        //    const videoTag = document.createElement('video');
+        //    if (video_source != '')
+        //        videoTag.src = URL.createObjectURL(video_source);
+        //    videoTag.id = id;
+        //    videoTag.width = width;
+        //    videoTag.height = height;
+        //    document.body.appendChild(videoTag);
+        //    videoTag.autoplay = true;
+        //    console.log("VideoTag " + id + " created");
+        //}
+
+        //function getUserMediaFailedCallback(error) {
+        //    console.error('User media request denied with error code ' + error.code);
+        //}
+
+        //function recorderOnStop() {
+        //    console.log('recorderOnStop fired');
+        //}
+
+
+        //function makeGetStreamX(width, height, buttonName, gotStreamFunction) {
+        //    return function () {
+        //        var constraintsWidthXHeight = {
+        //            "audio": false,
+        //            "video": {
+        //                "mandatory": {
+        //                    "minWidth": width,
+        //                    "maxWidth": width,
+        //                    "minHeight": height,
+        //                    "maxHeight": height
+        //                },
+
+                        //  var c;
+                        //  var theStream;
+                        //  var thePlayback;
+                        //  var canvas = document.querySelector('canvas');
+                        //  var video = document.querySelector('video');
+
+                        //  //// Optional frames per second argument.
+                        // // var stream = canvas.captureStream(25);
+                        //  //// Set the source of the <video> element to be the stream from the <canvas>.
+                        ////  video.srcObject = stream;
+
+                        //  function startStreaming() {
+                        //      document.getElementById("btn1").disabled = true;
+
+                        //      // Create a MediaStream out of the <canvas> tag.
+                        //      theStream = canvas.captureStream();
+                        //      document.body.appendChild(document.createElement("br"));
+                        //      createButton("btn2", "Play back captured Stream to a <video>", startPlayback);
+                        //      document.body.appendChild(document.createElement("br"));
+                        //  }
+                        //  function startPlayback() {
+                        //      document.getElementById("btn2").disabled = true;
+
+                        //      // And plug the created MediaStream into another <video> tag.
+                        //      createVideoTag("playbackTag", 640, 480, theStream);
+                        //      thePlayback = document.getElementById("playbackTag");
+                        //      document.body.appendChild(document.createElement("br"));
+
+                        //      createButton("btn3", "Stop theStream captured from <canvas>", stopStreaming);
+                        //  }
+
+
+                        //  function stopStreaming() {
+                        //      document.getElementById("btn3").disabled = true;
+                        //      theStream.getVideoTracks()[0].stop();
+                        //  }
+        //                "optional": []
+        //            }
+        //        };
+        //        navigator.webkitGetUserMedia(constraintsWidthXHeight,
+        //                                     gotStreamFunction,
+        //                                     getUserMediaFailedCallback);
+        //        document.getElementById(buttonName).disabled = true;
+        //    };
+        //}
+    </script>
+    <script src="~/Scripts/dependencies/gifshot.min.js"></script>
+    <script src="~/Scripts/dependencies/prism.min.js"></script>
+    <script src="~/Scripts/dependencies/esprima.min.js"></script>
+    <script src="~/Scripts/dependencies/escodegen.min.js"></script>
+    <script src="~/Scripts/dependencies/lodash.min.js"></script>
+    <script src="~/Scripts/dependencies/classList.js"></script>
+    <script class="gifshot-code-template" type="text/template">
+        gifshot.<%- method %>({
+        <% _.forEach(selectedOptions, function(val, key) {
+        if(gifshot.defaultOptions[key] !== val) { %>
+        <%= key %>: <% if(_.isString(val)) { %>'<%= val %>' <% }
+        else if(_.isArray(val)) { %>
+        <%= JSON.stringify(val) %> <% }
+        else { %> <%= val %> <%} %>,
+        <% } %>
+        <% }); %>
+        }, function(obj) {
+        if(!obj.error) {
+        var image = obj.image,
+        animatedImage = document.createElement('img');
+        animatedImage.src = image;
+        document.body.appendChild(animatedImage);
+        }
+        });
+    </script>
+
+
+
+}
+
+@section styles{
+    <style type="text/css">
+        body {
+            margin-top: 2%;
+            text-align: center;
+            color: #fff;
+            background-color: #122836;
+        }
+
+        video {
+            position: absolute;
+            visibility: hidden;
+        }
+
+        canvas {
+            border: 8px solid #fff;
+            background-size: cover;
+        }
+
+        button {
+            border: none;
+            display: block;
+            padding: 0.5em 1em;
+            margin: 1% auto 0;
+            cursor: pointer;
+            color: #fff;
+            background-color: #9f361b;
+        }
+
+            button:active {
+                background-color: #e44d26;
+            }
+    </style>
+}
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+
+<div id="viewContainer">
+    @*<canvas id="canvas" width="640" height="480" style="width: 100%; height: 100%;"></canvas>*@
+    <canvas id='c'></canvas>
+</div>
+<div id="uiContainer">
+    <div>Adjustment</div>
+    <div id="adjustments">
+    </div>
+</div>
+<div style="display:none;">
+    @*<video id="vid"></video>*@
+    <video id='v'></video>
+</div>
+<br style="clear:both" />
+
+
+
+
+
+<button id='btn'>Toggle Chroma Key</button>
+<input id="slider" type="range" min=0 max=1 step=.005>
+@*<button id="btn1" onclick="startStreaming()">Create Stream from < canvas ></button>*@
+<span class="options-button-group">
+
+    <a href="#" type="button" id="create-gif" class="btn btn-large btn-primary create-gif-button" role="button">Create GIF</a>
+    <a href="#" type="button" id="save-gif" class="btn btn-large btn-default save-gif-button hidden" role="button" download="gifshot-demo.gif">Download GIF</a>
+</span>
+<div class="col-md-5 text-center preview-section">
+    <h3>
+        Preview
+    </h3>
+    <section class="gifshot-image-preview-section"></section>
+    <div class="placeholder-div hidden">
+        <span class="placeholder-div-dimensions"></span>
+    </div>
+    <progress max="1" value="0" class="gifshot-progress-bar hidden"></progress>
+</div>
